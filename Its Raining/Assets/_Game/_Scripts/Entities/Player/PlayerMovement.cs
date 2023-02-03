@@ -14,6 +14,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashTime;
     [SerializeField] private float dashInterval;
     [SerializeField, ReadOnly] private bool canDash = true;
+
+    [Header("References:")] 
+    [SerializeField] private SpriteRenderer dashEffect;
     
     // Components
     private Rigidbody2D _rb;
@@ -38,6 +41,8 @@ public class PlayerMovement : MonoBehaviour
         GetMovementInput();
         GetDashInput();
         FlipSprite();
+
+        if (_curState == PlayerStateMachine.States.Dashing) SpawnDashEffect();
     }
 
     private void FixedUpdate()
@@ -106,7 +111,7 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator StopDash(float time)
     {
         yield return new WaitForSeconds(time);
-        _rb.velocity = Vector2.zero;
+        //_rb.velocity = Vector2.zero;
         PlayerStateMachine.SetState(PlayerStateMachine.States.Playing);
     }
 
@@ -114,5 +119,12 @@ public class PlayerMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         canDash = true;
+    }
+
+    private void SpawnDashEffect()
+    {
+        var dash = Instantiate(dashEffect, transform.position, Quaternion.identity);
+        dash.sprite = _spr.sprite;
+        dash.transform.localScale = this.transform.localScale;
     }
 }

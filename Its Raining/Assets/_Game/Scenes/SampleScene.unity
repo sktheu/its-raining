@@ -365,7 +365,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7197245058158336305, guid: 1bf86a475e0608a4b9114470a95b14bc, type: 3}
       propertyPath: dashSpeed
-      value: 80
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 7197245058158336305, guid: 1bf86a475e0608a4b9114470a95b14bc, type: 3}
+      propertyPath: dashEffect
+      value: 
+      objectReference: {fileID: 7720399074838094852, guid: ba009eac7d8fc5345afae4ebc3dc34d3, type: 3}
+    - target: {fileID: 7197245058158336305, guid: 1bf86a475e0608a4b9114470a95b14bc, type: 3}
+      propertyPath: dashInterval
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7197245058158336306, guid: 1bf86a475e0608a4b9114470a95b14bc, type: 3}
       propertyPath: m_RootOrder
@@ -415,5 +423,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9138349481167184753, guid: 1bf86a475e0608a4b9114470a95b14bc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1bf86a475e0608a4b9114470a95b14bc, type: 3}

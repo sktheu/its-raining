@@ -33,4 +33,9 @@ public class PlayerStateMachine : MonoBehaviour
     {
         stateManager.currentState = state;
     }
+
+    public static bool CompareState(States state)
+    {
+        return (stateManager.currentState == state);
+    }
 }
