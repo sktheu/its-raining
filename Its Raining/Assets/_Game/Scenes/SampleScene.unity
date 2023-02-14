@@ -278,7 +278,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000ab125be7
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -374,6 +374,10 @@ PrefabInstance:
     - target: {fileID: 7197245058158336305, guid: 1bf86a475e0608a4b9114470a95b14bc, type: 3}
       propertyPath: dashInterval
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7197245058158336305, guid: 1bf86a475e0608a4b9114470a95b14bc, type: 3}
+      propertyPath: dashEffectTime
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 7197245058158336306, guid: 1bf86a475e0608a4b9114470a95b14bc, type: 3}
       propertyPath: m_RootOrder

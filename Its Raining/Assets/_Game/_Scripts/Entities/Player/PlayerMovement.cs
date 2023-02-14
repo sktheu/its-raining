@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashTime;
     [SerializeField] private float dashInterval;
     [SerializeField, ReadOnly] private bool canDash = true;
+    [SerializeField] private float dashEffectTime;
 
     [Header("References:")] 
     [SerializeField] private SpriteRenderer dashEffect;
@@ -28,6 +29,9 @@ public class PlayerMovement : MonoBehaviour
     // State
     private PlayerStateMachine.States _curState;
     
+    // Dash Effect
+    private bool _playDashEffect = false;
+    
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -41,8 +45,8 @@ public class PlayerMovement : MonoBehaviour
         GetMovementInput();
         GetDashInput();
         FlipSprite();
-
-        if (_curState == PlayerStateMachine.States.Dashing) SpawnDashEffect();
+        
+        if (_playDashEffect) SpawnDashEffect();
     }
 
     private void FixedUpdate()
@@ -96,9 +100,11 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Dash") && canDash && _moveInput != Vector2.zero)
         {
             canDash = false;
+            _playDashEffect = true;
             PlayerStateMachine.SetState(PlayerStateMachine.States.Dashing);
             StartCoroutine(StopDash(dashTime));
             StartCoroutine(DashInterval(dashInterval));
+            StartCoroutine(StopDashEffect(dashEffectTime));
         }
     }
 
@@ -126,5 +132,11 @@ public class PlayerMovement : MonoBehaviour
         var dash = Instantiate(dashEffect, transform.position, Quaternion.identity);
         dash.sprite = _spr.sprite;
         dash.transform.localScale = this.transform.localScale;
+    }
+
+    private IEnumerator StopDashEffect(float time)
+    {
+        yield return new WaitForSeconds(time);
+        _playDashEffect = false;
     }
 }
