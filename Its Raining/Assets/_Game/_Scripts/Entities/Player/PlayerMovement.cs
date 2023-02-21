@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        _curState = PlayerStateMachine.GetState();
+        _curState = PlayerStateMachine.StateManager.GetState();
         
         GetMovementInput();
         GetDashInput();
@@ -61,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
         if (_curState != PlayerStateMachine.States.Dashing)
         {
             _moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
-            if (_moveInput != Vector2.zero) PlayerStateMachine.SetState(PlayerStateMachine.States.Moving);
+            if (_moveInput != Vector2.zero) PlayerStateMachine.StateManager.SetState(PlayerStateMachine.States.Moving);
         }
     }
 
@@ -86,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _rb.velocity = SetVelocity(maxSpeed * _moveInput, _rb.velocity, acceleration);
         
-        if (_rb.velocity == Vector2.zero) PlayerStateMachine.SetState(PlayerStateMachine.States.Playing);
+        if (_rb.velocity == Vector2.zero) PlayerStateMachine.StateManager.SetState(PlayerStateMachine.States.Playing);
     }
 
     private void FlipSprite()
@@ -101,7 +101,7 @@ public class PlayerMovement : MonoBehaviour
         {
             canDash = false;
             _playDashEffect = true;
-            PlayerStateMachine.SetState(PlayerStateMachine.States.Dashing);
+            PlayerStateMachine.StateManager.SetState(PlayerStateMachine.States.Dashing);
             StartCoroutine(StopDash(dashTime));
             StartCoroutine(DashInterval(dashInterval));
             StartCoroutine(StopDashEffect(dashEffectTime));
@@ -118,7 +118,7 @@ public class PlayerMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         //_rb.velocity = Vector2.zero;
-        PlayerStateMachine.SetState(PlayerStateMachine.States.Playing);
+        PlayerStateMachine.StateManager.SetState(PlayerStateMachine.States.Playing);
     }
 
     private IEnumerator DashInterval(float time)

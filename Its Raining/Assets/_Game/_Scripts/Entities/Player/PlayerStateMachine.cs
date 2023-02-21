@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class PlayerStateMachine : MonoBehaviour
 {
-    public static PlayerStateMachine stateManager;
+    public static PlayerStateMachine StateManager;
     
     [SerializeField, ReadOnly] private States currentState = States.Playing;
     
@@ -21,21 +21,21 @@ public class PlayerStateMachine : MonoBehaviour
 
     private void Awake()
     {
-        stateManager = this;
+        StateManager = this;
     }
 
-    public static States GetState()
+    public States GetState()
     {
-        return stateManager.currentState;
+        return StateManager.currentState;
     }
 
-    public static void SetState(States state)
+    public void SetState(States state)
     {
-        stateManager.currentState = state;
+        StateManager.currentState = state;
     }
 
-    public static bool CompareState(States state)
+    public bool CompareState(States state)
     {
-        return (stateManager.currentState == state);
+        return (StateManager.currentState == state);
     }
 }
