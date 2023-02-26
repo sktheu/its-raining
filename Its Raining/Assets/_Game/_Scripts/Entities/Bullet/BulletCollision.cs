@@ -12,6 +12,11 @@ public class BulletCollision : MonoBehaviour
         Invoke("SelfDestroy", lifeTime);
     }
 
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        SelfDestroy();
+    }
+
     private void SelfDestroy()
     {
         Destroy(gameObject);

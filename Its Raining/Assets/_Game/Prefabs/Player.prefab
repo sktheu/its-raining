@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 653284506265427998}
   - component: {fileID: 7197245058158336305}
   - component: {fileID: 1654380133275783851}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,3 +174,5 @@ MonoBehaviour:
   shootInterval: 0.04
   canShoot: 1
   _bulletPrefab: {fileID: 657225936550693934, guid: d120700b1c2707145922b31d7ce9ffc9, type: 3}
+  maxEnergy: 100
+  curEnergy: 0
